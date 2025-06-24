@@ -1,0 +1,28 @@
+@model List<ExportDemo.Models.DataModel>
+
+@{
+  ViewData["Title"] = "Export Data";
+}
+
+<h2>Export Data</h2>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Nama</th>
+      <th>Umur</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var i in Model)
+    {
+      <tr>
+        <td>@i.Nama</td>
+        <td>@i.Umur</td>
+      </tr>
+    }
+  </tbody>
+</table>
+
+<a href="/Export/DownloadPdf" class="btn btn-danger">Download PDF</a>
+<a href="/Export/DownloadExcel" class="btn btn-success">Download Excel</a>

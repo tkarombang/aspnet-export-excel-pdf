@@ -1,0 +1,31 @@
+@model List<ExportDemo.Models.DataModel>
+
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project aigislabs</title>
+    <style>
+      table {width: 100%; border-collapse: collapse;}
+      th, td {border: 1px solid black; padding: 8px; text-align: left;}
+      th {background-color: #eee;}
+    </style>
+  </head>
+  <body>
+    <h2>Laporan Data</h2>
+    <table>
+      <tr>
+        <th>Nama</th>
+        <th>Umur</th>
+      </tr>
+      @foreach (var n in Model)
+      {
+        <tr>
+          <td>@n.Nama</td>
+          <td>@n.Umur</td>
+        </tr>
+      }
+    </table>   
+  </body>
+  </html>
