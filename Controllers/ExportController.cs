@@ -1,22 +1,29 @@
 using ClosedXML.Excel;
 using Microsoft.AspNetCore.Mvc;
 using Rotativa.AspNetCore;
-using ExportDemo.Models;
-using System.IO;
+using ExportDemo.DAL.Repositories.Interfaces;
 
 namespace ExportDemo.Controllers
 {
   public class ExportController : Controller
   {
+
+    private readonly IDataRepository _dataRepo;
+
+    public ExportController(IDataRepository dataRepo)
+    {
+      _dataRepo = dataRepo;
+    }
+
     public IActionResult Index()
     {
-      var data = GetSampleData();
+      var data = _dataRepo.GetAllData();
       return View(data);
     }
 
     public IActionResult DownloadPdf()
     {
-      var data = GetSampleData();
+      var data = _dataRepo.GetAllData();
       return new ViewAsPdf("PdfTemplate", data)
       {
         FileName = "LaporanData.pdf"
@@ -25,10 +32,11 @@ namespace ExportDemo.Controllers
 
     public IActionResult DownloadExcel()
     {
-      var data = GetSampleData();
+      var data = _dataRepo.GetAllData();
 
       using var workbook = new XLWorkbook();
       var worksheet = workbook.Worksheets.Add("Data");
+
       worksheet.Cell(1, 1).Value = "Nama";
       worksheet.Cell(1, 2).Value = "Umur";
 
@@ -49,16 +57,6 @@ namespace ExportDemo.Controllers
 
 
 
-
-    private List<DataModel> GetSampleData()
-    {
-      return new List<DataModel>
-      {
-        new DataModel {Nama = "Muhammad", Umur = 33},
-        new DataModel {Nama = "Azwar", Umur = 30},
-        new DataModel {Nama = "Anas", Umur = 31}
-      };
-    }
 
   }
 

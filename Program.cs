@@ -1,9 +1,12 @@
+using ExportDemo.DAL.Repositories.Implementations;
+using ExportDemo.DAL.Repositories.Interfaces;
 using Rotativa.AspNetCore;
 
 
 var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<IDataRepository, DataRepository>();
 
 var app = builder.Build();
 
