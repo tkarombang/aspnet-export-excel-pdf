@@ -53,11 +53,11 @@ namespace ExportDemo.Controllers
     private List<DataModel> GetSampleData()
     {
       return new List<DataModel>
-    {
-      new DataModel {Nama = "Muhammad", Umur = 33},
-      new DataModel {Nama = "Azwar", Umur = 30},
-      new DataModel {Nama = "Anas", Umur = 31}
-    };
+      {
+        new DataModel {Nama = "Muhammad", Umur = 33},
+        new DataModel {Nama = "Azwar", Umur = 30},
+        new DataModel {Nama = "Anas", Umur = 31}
+      };
     }
 
   }
